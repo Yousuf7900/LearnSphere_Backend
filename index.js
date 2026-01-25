@@ -67,6 +67,19 @@ async function run() {
             res.send(result);
         })
 
+        // get all tutorials
+        app.get('/all-tutorials', async (req, res) => {
+            const result = await tutorialsCollection.find().toArray();
+            res.send(result);
+        })
+
+        // to get my-tutorials by email
+        app.get('/all-tutorials/:email', async (req, res) => {
+            const email = req.params.email;
+            const result = await tutorialsCollection.find({ tutorEmail: email }).toArray();
+            res.send(result);
+        })
+
 
 
     } finally {
