@@ -136,6 +136,21 @@ async function run() {
             res.send(result);
         })
 
+        // update code
+        app.patch('/tutorials/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedData = req.body;
+            const result = await tutorialsCollection.updateOne(
+                {
+                    _id: new ObjectId(id)
+                },
+                {
+                    $set: updatedData
+                }
+            );
+            res.send(result);
+        })
+
     } finally {
         // await client.close();
     }
