@@ -8,7 +8,15 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = process.env.PORT || 5000;
 require('dotenv').config();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: [
+            "http://localhost:5173",
+            "https://learnsphere-study.web.app"
+        ],
+        credentials: true
+    }
+));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -27,7 +35,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
-        await client.connect();
+        // await client.connect();
         console.log("Server connected to the Database!");
 
 
